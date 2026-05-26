@@ -1,130 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For You 🤍</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>My Valentine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color: transparent;
+}
 
 body{
-    margin:0;
-    height:100vh;
-
-    /* Valentine Sunflower Background */
-    background:url("https://images.unsplash.com/photo-1526045612212-70caf35c14df") no-repeat center;
-    background-size:cover;
-
-    font-family:'Comic Sans MS',cursive;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    transition:background 1s ease;
+font-family:'Inter',sans-serif;
+height:100vh;
+overflow:hidden;
+background:
+radial-gradient(circle at top left,#ff9ec4 0%,transparent 30%),
+radial-gradient(circle at bottom right,#ffd3e6 0%,transparent 30%),
+linear-gradient(135deg,#0f0f14,#171720 65%);
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+color:white;
 }
 
-/* Gift Box */
-
-#gift{
-    width:200px;
-    height:200px;
-    background:linear-gradient(45deg,#ff6b6b,#ffb3b3);
-    border-radius:25px;
-    cursor:pointer;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    color:white;
-    font-size:22px;
-
-    box-shadow:0 10px 25px rgba(0,0,0,0.3);
-
-    animation:float 2s infinite ease-in-out;
-
-    transition:all 1s ease;
+.bg-blur{
+position:absolute;
+width:320px;
+height:320px;
+background:#ff4f9a;
+filter:blur(120px);
+opacity:0.25;
+border-radius:50%;
+top:-100px;
+left:-100px;
+animation:float1 8s ease-in-out infinite alternate;
 }
 
-@keyframes float{
-    0%{transform:translateY(0);}
-    50%{transform:translateY(-10px);}
-    100%{transform:translateY(0);}
+.bg-blur2{
+position:absolute;
+width:280px;
+height:280px;
+background:#ffb6d9;
+filter:blur(120px);
+opacity:0.18;
+border-radius:50%;
+bottom:-100px;
+right:-100px;
+animation:float2 10s ease-in-out infinite alternate;
 }
 
-/* Open Animation */
-
-#gift.open{
-    transform:scale(3);
-    opacity:0;
+@keyframes float1{
+from{transform:translate(0,0);}
+to{transform:translate(80px,40px);}
 }
 
-/* Card */
+@keyframes float2{
+from{transform:translate(0,0);}
+to{transform:translate(-60px,-30px);}
+}
 
 .card{
-    display:none;
-
-    background:rgba(255,255,255,0.96);
-    padding:30px;
-    border-radius:25px;
-    width:90%;
-    max-width:360px;
-
-    text-align:center;
-
-    box-shadow:0 0 25px rgba(0,0,0,0.3);
-
-    animation:fadeIn 1.2s ease;
+width:min(92vw,430px);
+padding:34px 26px;
+border-radius:34px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(25px);
+border:1px solid rgba(255,255,255,0.12);
+box-shadow:
+0 10px 40px rgba(0,0,0,0.35),
+inset 0 1px 0 rgba(255,255,255,0.08);
+position:relative;
+z-index:5;
+overflow:hidden;
 }
 
-@keyframes fadeIn{
-    from{opacity:0; transform:scale(0.8);}
-    to{opacity:1; transform:scale(1);}
+.top-tag{
+display:inline-flex;
+align-items:center;
+gap:8px;
+padding:8px 14px;
+border-radius:999px;
+background:rgba(255,255,255,0.08);
+font-size:13px;
+font-weight:600;
+color:#ffd6e8;
+margin-bottom:28px;
+border:1px solid rgba(255,255,255,0.08);
 }
 
-h1{color:#ff9900;}
-
-p{
-    font-size:18px;
-    min-height:60px;
+h1{
+font-size:2rem;
+line-height:1.35;
+font-weight:700;
+letter-spacing:-0.03em;
+margin-bottom:16px;
 }
 
-/* Buttons */
+.highlight{
+background:linear-gradient(90deg,#ff90c2,#ffd7ea);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.sub{
+font-size:15px;
+line-height:1.7;
+color:rgba(255,255,255,0.72);
+margin-bottom:42px;
+}
+
+.buttons{
+position:relative;
+height:140px;
+}
 
 button{
-    padding:12px 22px;
-    border:none;
-    border-radius:25px;
-    font-size:16px;
-    cursor:pointer;
-    margin:8px;
-    transition:0.3s;
+border:none;
+outline:none;
+font-family:'Inter',sans-serif;
+font-size:15px;
+font-weight:700;
+padding:16px 22px;
+border-radius:18px;
+cursor:pointer;
+transition:0.25s ease;
+position:absolute;
 }
 
-#yesBtn{background:gold;}
+#yesBtn{
+left:0;
+background:linear-gradient(135deg,#ff4f9a,#ff78b0);
+color:white;
+box-shadow:
+0 12px 25px rgba(255,79,154,0.35);
+}
+
+#yesBtn:active{
+transform:scale(0.96);
+}
 
 #noBtn{
-    background:#ff6b6b;
-    color:white;
-    position:relative;
+right:0;
+background:rgba(255,255,255,0.08);
+color:white;
+border:1px solid rgba(255,255,255,0.12);
+backdrop-filter:blur(10px);
 }
 
-button:hover{transform:scale(1.1);}
-
-/* Yay */
-
-#yay{
-    display:none;
-    font-size:20px;
-    color:#ff9900;
-    animation:pop 1s infinite alternate;
+.response{
+margin-top:20px;
+font-size:1rem;
+line-height:1.6;
+min-height:48px;
+font-weight:600;
+color:#ffd6e8;
+transition:0.3s ease;
 }
 
-@keyframes pop{
-    from{transform:scale(1);}
-    to{transform:scale(1.1);}
+.success{
+position:fixed;
+inset:0;
+background:#0f0f14;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:99;
+opacity:0;
+pointer-events:none;
+transition:0.6s ease;
+}
+
+.success.show{
+opacity:1;
+pointer-events:auto;
+}
+
+.success h2{
+font-size:2.4rem;
+margin-bottom:14px;
+text-align:center;
+background:linear-gradient(90deg,#ff90c2,#fff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.success p{
+font-size:1rem;
+color:rgba(255,255,255,0.72);
+text-align:center;
+padding:0 20px;
+line-height:1.7;
+}
+
+.heart{
+position:absolute;
+font-size:20px;
+animation:rise linear forwards;
+opacity:0.8;
+}
+
+@keyframes rise{
+0%{
+transform:translateY(0) scale(0.7);
+opacity:0;
+}
+15%{
+opacity:1;
+}
+100%{
+transform:translateY(-120vh) scale(1.5);
+opacity:0;
+}
 }
 
 </style>
@@ -132,95 +229,96 @@ button:hover{transform:scale(1.1);}
 
 <body>
 
-<!-- Gift -->
+<div class="bg-blur"></div>
+<div class="bg-blur2"></div>
 
-<div id="gift" onclick="openGift()">
-Open Me 😙❤️
+<div class="card">
+
+<div class="top-tag">
+🤍 confidential question
 </div>
 
-<!-- Card -->
+<h1>
+SOOOOO...<br>
+I was kinda <span class="highlight">thinking</span> 😭
+</h1>
 
-<div class="card" id="card">
+<p class="sub">
+After all the overthinking, rethinking, double thinking and unnecessary dramatic thinking...
+would you maybe possibly perhaps wanna go out on a date with me? 🫣
+</p>
 
-<h1>Hey ❤️</h1>
+<div class="buttons">
+<button id="yesBtn">
+I WILL 🤭
+</button>
 
-<p id="question"></p>
-
-<div id="buttons">
-<button id="yesBtn" onclick="sayYes()">Yes 😋</button>
-<button id="noBtn" onclick="moveNo()">No 😞</button>
+<button id="noBtn">
+NAAAHH
+</button>
 </div>
 
-<div id="yay">
-
-YAAAYYY 😙😙😙😙😙❤️❤️❤️ <br><br>
-
-I KNEW YOU'D SAY YESSSS 😙🤭❤️ <br><br>
-
-I LOVEEEE YOUUUUUU SOOOOO MUCHHHH 😙😙😙😙❤️❤️❤️❤️❤️❤️❤️❤️
+<div class="response" id="response"></div>
 
 </div>
 
+<div class="success" id="success">
+<h2>YAYYYYY 😭🤍</h2>
+<p>
+Officially the best decision ever made.
+Date application accepted successfully.
+</p>
 </div>
 
 <script>
 
-/* Open Gift */
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const response = document.getElementById("response");
+const success = document.getElementById("success");
 
-function openGift(){
+function moveButton(){
 
-    const gift=document.getElementById("gift");
+const maxX = window.innerWidth - noBtn.offsetWidth - 30;
+const maxY = window.innerHeight - noBtn.offsetHeight - 30;
 
-    gift.classList.add("open");
+const x = Math.random() * maxX;
+const y = Math.random() * maxY;
 
-    setTimeout(()=>{
-        gift.style.display="none";
-        document.getElementById("card").style.display="block";
-        typeText();
-    },1000);
+noBtn.style.left = `${x}px`;
+noBtn.style.top = `${y}px`;
+
+response.innerHTML =
+"AWWW 😭 you really thought “no” was an available option?? it’s a YES ONLY 😙";
 }
 
-/* Typing Effect */
+noBtn.addEventListener("mouseover", moveButton);
+noBtn.addEventListener("touchstart", moveButton);
 
-const text="ROTUDUUU, will you be my Valentine 😙❤️";
-let i=0;
+yesBtn.addEventListener("click", ()=>{
 
-function typeText(){
+success.classList.add("show");
 
-    if(i<text.length){
+for(let i=0;i<35;i++){
 
-        document.getElementById("question").innerHTML+=text.charAt(i);
-        i++;
+const heart = document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML = ["🤍","💖","✨","🫶"][Math.floor(Math.random()*4)];
 
-        setTimeout(typeText,70);
-    }
+heart.style.left = Math.random()*100 + "vw";
+heart.style.bottom = "-20px";
+heart.style.animationDuration =
+(Math.random()*3 + 3) + "s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},6000);
+
 }
 
-/* No Button Run */
-
-function moveNo(){
-
-    const btn=document.getElementById("noBtn");
-
-    const x=Math.random()*250-125;
-    const y=Math.random()*200-100;
-
-    btn.style.transform=`translate(${x}px,${y}px)`;
-}
-
-/* Yes */
-
-function sayYes(){
-
-    document.getElementById("buttons").style.display="none";
-    document.getElementById("question").style.display="none";
-    document.getElementById("yay").style.display="block";
-
-    /* Romantic Background */
-
-    document.body.style.backgroundImage=
-    "url('https://images.unsplash.com/photo-1518190171695-bbbb69c4a901')";
-}
+});
 
 </script>
 
